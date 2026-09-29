@@ -5,7 +5,7 @@ description: "Open a bucket, find a key and read the stored value, from the dash
 
 # Browse KV Storage
 
-The **Key-Value** page in the top navigation is a read-only browser over your KV storage. Feeds write to it with `@atria/kv`, and a client of your own can write to it as well.
+The **Key-Value** page in the top navigation is a read-only browser over your KV storage. Feeds write to it with `@atria/kv`, and your own code can write to it too.
 
 <video autoPlay muted loop playsInline className="w-full rounded-lg" src="/images/atria/changelog/0-10-0-kv-storage.mp4" />
 
@@ -45,6 +45,6 @@ The **Metadata** tab gives you the bucket, the key, the type, the size in bytes 
 
 ## The Page Only Reads
 
-Nothing on this page changes or deletes a value, so opening a bucket is always safe. Whatever wrote the value, a feed or a client of your own, stays the only thing that changes it.
+Nothing on this page changes or deletes a value, so opening a bucket is always safe. A value still changes only where it is written, in a feed or in your own code.
 
 For what feeds can do with KV, see [KV storage](/atria/core-concepts/kv-storage).
