@@ -1,0 +1,50 @@
+---
+title: "Browse KV Storage"
+description: "Open a bucket, find a key and read the stored value, from the dashboard."
+---
+
+# Browse KV Storage
+
+The **Key-Value** page in the top navigation is a read-only browser over your KV storage. Feeds write to it with `@atria/kv`, and a client of your own can write to it as well.
+
+<video autoPlay muted loop playsInline className="w-full rounded-lg" src="/images/atria/changelog/0-10-0-kv-storage.mp4" />
+
+![Key-Value in the top navigation](/images/atria/dashboard/kv-page.png)
+
+The page has three panes. Buckets on the left, the keys in the selected bucket in the middle, the stored value on the right.
+
+## Buckets
+
+The first pane lists your buckets, ten at a time. Scroll to the bottom for the next ten.
+
+The **Filter buckets** box narrows the buckets that are already loaded. It does not search the ones you have not loaded yet, so load more first if you are looking for a bucket that is not in the list.
+
+![Filter buckets box above the bucket list](/images/atria/dashboard/kv-buckets.png)
+
+## Keys
+
+Pick a bucket and the second pane lists its keys, ten at a time, loading more as you scroll.
+
+Each row shows the key, the start of the value, a **JSON** or **TEXT** badge, and the size.
+
+The **Search keys by exact name** box finds one key by its full name. A partial name does not match, so `wallet` will not find `wallet-totals`.
+
+![Keys in the selected bucket, with the exact name search box](/images/atria/dashboard/kv-keys.png)
+
+## Value
+
+Pick a key and the third pane opens what is stored.
+
+The **Value** tab shows the value itself. Use the view menu on the right to read it as **JSON**, **Plain text** or **Hex**. **Copy** puts it on the clipboard and **Download** saves it as a file.
+
+![Stored value with the view menu](/images/atria/dashboard/kv-value.png)
+
+The **Metadata** tab gives you the bucket, the key, the type, the size in bytes and the character count.
+
+![Metadata tab for a key](/images/atria/dashboard/kv-metadata.png)
+
+## The Page Only Reads
+
+Nothing on this page changes or deletes a value, so opening a bucket is always safe. Whatever wrote the value, a feed or a client of your own, stays the only thing that changes it.
+
+For what feeds can do with KV, see [KV storage](/atria/core-concepts/kv-storage).

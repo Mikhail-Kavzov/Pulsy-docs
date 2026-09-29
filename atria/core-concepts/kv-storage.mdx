@@ -80,6 +80,10 @@ const page = await bucket.list({
 - `limit` controls the maximum number of values returned.
 - `cursor` is used to continue from a previous page.
 
+## See What Is Stored
+
+Open the **Key-Value** page in the dashboard to browse your buckets, find a key and read its value. See [browse KV storage](/atria/dashboard/browse-kv-storage).
+
 ## Use Carefully
 
 KV is best for compact workflow state and lookup data. It should not replace an analytical database, a warehouse, or a long-term event archive.
