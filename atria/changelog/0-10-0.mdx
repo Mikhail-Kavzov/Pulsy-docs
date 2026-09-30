@@ -1,0 +1,42 @@
+---
+title: "Atria 0.10.0"
+description: "Read what is in your KV storage, straight from the dashboard."
+---
+
+**Released September 28, 2026**
+
+There is a new Key-Value page in the dashboard. Open a bucket, pick a key, read the stored value. Self-hosted stacks now start the key-value service on their own. And a feed that cannot be recovered stops with a reason.
+
+<video autoPlay muted loop playsInline className="w-full rounded-lg" src="/images/atria/changelog/0-10-0-kv-storage.mp4" />
+
+## See what is in your KV storage
+
+**Key-Value** is a new item in the top navigation.
+
+![Key-Value in the top navigation](/images/atria/dashboard/kv-page.png)
+
+It has three panes. Buckets on the left, the keys in the bucket you picked in the middle, the stored value on the right.
+
+![A stored value open on the right](/images/atria/dashboard/kv-value.png)
+
+Read the value as JSON, plain text or hex. Copy it, or download it as a file. The **Metadata** tab gives you the type, the size and the character count.
+
+The page only reads. Nothing on it changes or deletes a value, so opening a bucket is always safe. A value still changes only where it is written, in a feed or in your own code.
+
+See [browse KV storage](/atria/dashboard/browse-kv-storage) for how to use the page, and [KV storage](/atria/core-concepts/kv-storage) for how KV works.
+
+## KV works on a fresh self-hosted stack
+
+`@atria/kv` needs a key-value service running next to Atria, and the compose files did not start one. A stack came up looking fine, then the first feed that called KV failed with a connection error.
+
+The compose files start it now. Pull them, bring the stack up, and `@atria/kv` works. Its data sits in `data/ekv` next to your Postgres data, so it survives a restart.
+
+See [self-hosting](/atria/operations/self-hosting) for the full stack.
+
+## A feed that cannot be recovered now says so
+
+Atria keeps a window of recent blocks per chain. A feed that is stopped for long enough falls behind the oldest block in that window, and there is no way to carry on from where it left off.
+
+Atria used to keep retrying, with nothing in the dashboard to explain it. Now the feed moves to **Error** and carries the reason, `Feed cursor (block 1234) is behind chain tail (block 5678)`. Start it again from a block that is still in the window.
+
+See [cursors and block delay](/atria/core-concepts/cursors-and-block-delay) for how the cursor moves.
